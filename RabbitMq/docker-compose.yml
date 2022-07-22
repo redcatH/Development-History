@@ -1,0 +1,23 @@
+version: '3'
+services:
+ rabbitmq: #由于配置文件映射后无法生成，数据文件需要相应用户的权限，因此无法做数据卷映射
+    restart: always
+    privileged: true
+    image: rabbitmq:management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      - TZ=Asia/Shanghai
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=${PASSWORD}
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+      - "25672:25672"
+      - "1883:1883"
+    volumes:
+      - "./plugins.erl:/etc/rabbitmq/enabled_plugins"
+      - "./advanced.config:/etc/rabbitmq/advanced.config"

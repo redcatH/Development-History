@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    restart: always
+    privileged: true
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    hostname: sqlserver
+    environment:
+      - TZ=Asia/Shanghai
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${PASSWORD}
+      - MSSQL_PID=EnterpriseCore
+    ports:
+      - 1433:1433
+    volumes:
+      - /docker/sqlserver/volume/data:/var/opt/mssql
