@@ -1,2 +1,7 @@
 # Development-History
-Infrastructure required for development
+
+- ELK
+- MongoDB
+- RabbitMQ
+- Redis
+- SqlServer
